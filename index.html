@@ -4,6 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>WebCraft - Learn to Code</title>
+<meta name="description" content="WebCraft: learn HTML, CSS and JavaScript step by step with short lessons, a live preview and coins to unlock new worlds.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%231e2240'/%3E%3Ctext x='50' y='66' font-size='46' font-family='monospace' font-weight='700' text-anchor='middle' fill='%23f59e0b'%3E%26lt;/%26gt;%3C/text%3E%3C/svg%3E">
 <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
 <style>
 :root {
@@ -22,14 +24,15 @@ header{background:var(--panel);border-bottom:2px solid var(--border);display:fle
 .logo{font-size:1.2rem;font-weight:900;white-space:nowrap}
 .logo .hc{color:var(--hc)}.logo .cc{color:var(--cc)}.logo .jc{color:var(--jc)}
 .world-tabs{display:flex;gap:6px}
-.wtab{display:flex;align-items:center;gap:6px;padding:6px 14px;border-radius:30px;font-weight:700;font-size:0.82rem;cursor:pointer;border:2px solid transparent;transition:all 0.2s;user-select:none}
+.wtab{display:flex;align-items:center;gap:6px;padding:6px 14px;border-radius:30px;font-family:'Nunito',sans-serif;font-weight:700;font-size:0.82rem;cursor:pointer;border:2px solid transparent;transition:all 0.2s;user-select:none}
 .wtab.ht{background:var(--hl);color:var(--hc);border-color:var(--hb)}
 .wtab.ct{background:var(--cl);color:var(--cc);border-color:var(--cb)}
 .wtab.jt{background:var(--jl);color:var(--jc);border-color:var(--jb)}
 .wtab.active.ht{background:var(--hc);color:#fff}
 .wtab.active.ct{background:var(--cc);color:#fff}
 .wtab.active.jt{background:var(--jc);color:#fff}
-.wtab.locked{background:#f3f4f8;color:var(--muted);border-color:var(--border);cursor:not-allowed}
+.wtab.locked{background:#f3f4f8;color:var(--muted);border-color:var(--border);cursor:pointer}
+.wtab.locked::after{content:"\1F512";font-size:0.7rem}
 .lbadge{font-size:0.7rem;background:var(--coin);color:#fff;border-radius:20px;padding:1px 7px;font-weight:800}
 .coins-disp{display:flex;align-items:center;gap:6px;background:var(--jl);border:2px solid var(--jb);border-radius:30px;padding:5px 14px;font-weight:800;font-size:0.95rem;color:var(--jc);white-space:nowrap}
 
@@ -40,12 +43,13 @@ main{display:grid;grid-template-columns:290px 1fr 1fr;flex:1;overflow:hidden}
 .sidebar{background:var(--panel);border-right:2px solid var(--border);display:flex;flex-direction:column;overflow:hidden}
 .sb-scroll{flex:1;overflow-y:auto;padding:14px;display:flex;flex-direction:column;gap:12px}
 .lnav-title{font-size:0.68rem;font-weight:800;text-transform:uppercase;letter-spacing:1.5px;color:var(--muted);margin-bottom:4px}
-.lvlbtn{display:flex;align-items:center;gap:9px;padding:9px 11px;border-radius:10px;border:2px solid var(--border);background:var(--bg);cursor:pointer;transition:all 0.15s;text-align:left;font-family:'Nunito',sans-serif}
+.lvlbtn{width:100%;color:inherit;display:flex;align-items:center;gap:9px;padding:9px 11px;border-radius:10px;border:2px solid var(--border);background:var(--bg);cursor:pointer;transition:all 0.15s;text-align:left;font-family:'Nunito',sans-serif}
 .lvlbtn:hover{border-color:#c5d0f0;background:#fff}
 .lvlbtn.done{border-color:var(--green);background:var(--gl)}
 .lvlbtn.ha{border-color:var(--hc);background:var(--hl)}
 .lvlbtn.ca{border-color:var(--cc);background:var(--cl)}
 .lvlbtn.ja{border-color:var(--jc);background:var(--jl)}
+#level-list{display:flex;flex-direction:column;gap:6px}
 .lbtn-icon{font-size:1.1rem;flex-shrink:0}
 .lbtn-info{flex:1;min-width:0}
 .lbtn-name{font-size:0.8rem;font-weight:700}
@@ -62,7 +66,8 @@ main{display:grid;grid-template-columns:290px 1fr 1fr;flex:1;overflow:hidden}
 .icard-desc{font-size:0.8rem;color:#3a4060;line-height:1.7;margin-bottom:12px}
 .eg-box{background:#1e2240;border-radius:8px;padding:11px 13px;margin-bottom:12px}
 .eg-label{font-size:0.6rem;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:#7a82a8;margin-bottom:6px}
-.eg-code{font-family:'Fira Code',monospace;font-size:0.72rem;color:#a6e3a1;white-space:pre;line-height:1.7}
+.eg-code{font-family:'Fira Code',monospace;font-size:0.72rem;color:#a6e3a1;white-space:pre;line-height:1.7;overflow-x:auto}
+.sidebar,.editor-pane,.preview-pane{min-width:0}
 .chk-title{font-size:0.68rem;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:var(--muted);margin-bottom:6px}
 .chklist{display:flex;flex-direction:column;gap:5px}
 .chkitem{display:flex;align-items:flex-start;gap:8px;font-size:0.78rem;padding:6px 10px;border-radius:8px;background:#fff;border:1px solid var(--border);transition:all 0.25s;line-height:1.4}
@@ -83,6 +88,11 @@ main{display:grid;grid-template-columns:290px 1fr 1fr;flex:1;overflow:hidden}
 .sub-btn{display:flex;align-items:center;gap:5px;background:var(--coin);color:#fff;border:none;padding:5px 13px;border-radius:7px;font-family:'Nunito',sans-serif;font-size:0.78rem;font-weight:800;cursor:pointer;transition:all 0.15s}
 .sub-btn:hover{opacity:0.85}
 .sub-btn:disabled{opacity:0.4;cursor:not-allowed}
+.tool-btn{display:flex;align-items:center;gap:4px;background:transparent;color:#a9b1d6;border:1px solid #3e4480;padding:5px 10px;border-radius:7px;font-family:'Nunito',sans-serif;font-size:0.75rem;font-weight:700;cursor:pointer;transition:all 0.15s}
+.tool-btn:hover{background:#2e3260;color:#fff}
+.next-btn{display:none;align-items:center;gap:5px;background:var(--cc);color:#fff;border:none;padding:5px 13px;border-radius:7px;font-family:'Nunito',sans-serif;font-size:0.78rem;font-weight:800;cursor:pointer}
+.next-btn.show{display:flex}
+.next-btn:hover{opacity:0.85}
 #code-editor{flex:1;background:#1e2240;color:#cdd6f4;font-family:'Fira Code',monospace;font-size:0.8rem;line-height:1.9;border:none;outline:none;padding:15px;resize:none;tab-size:2}
 .ins-bar{display:flex;flex-wrap:wrap;gap:5px;padding:7px 13px;background:#171930;border-top:1px solid #2e3260;flex-shrink:0}
 .ichip{font-family:'Fira Code',monospace;font-size:0.67rem;background:#2e3260;color:#a6e3a1;border:1px solid #3e4480;border-radius:5px;padding:3px 8px;cursor:pointer;transition:all 0.15s;user-select:none;white-space:nowrap}
@@ -107,6 +117,12 @@ main{display:grid;grid-template-columns:290px 1fr 1fr;flex:1;overflow:hidden}
 /* SHOP */
 #shop-screen{display:none;position:fixed;inset:0;background:rgba(30,34,64,0.85);backdrop-filter:blur(4px);z-index:50;align-items:center;justify-content:center}
 #shop-screen.show{display:flex}
+#finish-screen{display:none;position:fixed;inset:0;background:rgba(30,34,64,0.85);backdrop-filter:blur(4px);z-index:60;align-items:center;justify-content:center}
+#finish-screen.show{display:flex}
+.finish-panel{text-align:center}
+.finish-icon{font-size:3.2rem;margin-bottom:8px}
+.finish-actions{display:flex;gap:10px}
+.shop-close.danger{color:var(--red)}
 .shop-panel{background:#fff;border-radius:20px;padding:34px;max-width:500px;width:95%;box-shadow:0 24px 80px rgba(30,34,64,0.3)}
 .shop-title{font-size:1.5rem;font-weight:900;margin-bottom:6px}
 .shop-sub{font-size:0.82rem;color:var(--muted);margin-bottom:24px;line-height:1.6}
@@ -139,6 +155,35 @@ main{display:grid;grid-template-columns:290px 1fr 1fr;flex:1;overflow:hidden}
 .shop-open-btn{display:flex;align-items:center;gap:6px;padding:5px 13px;border-radius:20px;border:2px solid var(--jb);background:var(--jl);color:var(--jc);font-family:'Nunito',sans-serif;font-size:0.78rem;font-weight:800;cursor:pointer;transition:all 0.15s}
 .shop-open-btn:hover{background:var(--jc);color:#fff}
 
+/* TABLET AND PHONE */
+@media (max-width: 1100px) {
+  main{grid-template-columns:260px 1fr}
+  .preview-pane{grid-column:1 / -1;min-height:340px;border-top:2px solid var(--border)}
+  body{height:auto;min-height:100vh;overflow:auto}
+  main{overflow:visible}
+  .editor-pane{min-height:520px}
+}
+@media (max-width: 760px) {
+  header{flex-wrap:wrap;height:auto;padding:10px 12px;row-gap:8px}
+  .logo{font-size:1.05rem}
+  .world-tabs{order:3;width:100%;justify-content:center}
+  .wtab{flex:1;justify-content:center}
+  main{grid-template-columns:1fr}
+  .sidebar{border-right:none;border-bottom:2px solid var(--border);overflow:visible}
+  .sb-scroll{overflow:visible}
+  .editor-pane{min-height:420px;border-right:none}
+  .ed-top{height:auto;flex-wrap:wrap;gap:8px;padding:8px 12px}
+  .btn-row{flex-wrap:wrap}
+  .ed-foot span:first-child{display:none}
+  .preview-pane{min-height:360px}
+  .shop-panel{padding:22px}
+  .shop-item{flex-wrap:wrap}
+  .finish-actions{flex-direction:column}
+  .toast{white-space:normal;width:max-content;max-width:90vw;text-align:center}
+}
+
+button:focus-visible,.ichip:focus-visible,#code-editor:focus-visible{outline:3px solid var(--coin);outline-offset:2px}
+
 ::-webkit-scrollbar{width:5px}
 ::-webkit-scrollbar-track{background:transparent}
 ::-webkit-scrollbar-thumb{background:#d0d6f0;border-radius:4px}
@@ -149,9 +194,9 @@ main{display:grid;grid-template-columns:290px 1fr 1fr;flex:1;overflow:hidden}
 <header>
   <div class="logo"><span class="hc">HTML</span> &middot; <span class="cc">CSS</span> &middot; <span class="jc">JS</span> Academy</div>
   <div class="world-tabs">
-    <div class="wtab ht active" id="tab-html" onclick="switchWorld('html')">HTML</div>
-    <div class="wtab ct locked" id="tab-css"  onclick="tryWorld('css')">CSS</div>
-    <div class="wtab jt locked" id="tab-js"   onclick="tryWorld('js')">JS</div>
+    <button type="button" class="wtab ht active" id="tab-html" onclick="switchWorld('html')">HTML</button>
+    <button type="button" class="wtab ct locked" id="tab-css"  onclick="tryWorld('css')">CSS</button>
+    <button type="button" class="wtab jt locked" id="tab-js"   onclick="tryWorld('js')">JS</button>
   </div>
   <div style="display:flex;gap:8px;align-items:center">
     <button class="shop-open-btn" onclick="openShop()">Shop</button>
@@ -188,14 +233,17 @@ main{display:grid;grid-template-columns:290px 1fr 1fr;flex:1;overflow:hidden}
         &nbsp;<span id="ed-filename">index.html</span>
       </div>
       <div class="btn-row">
-        <button class="run-btn" onclick="runPreview()">&#9654; Preview</button>
-        <button class="sub-btn" id="submit-btn" onclick="submitCode()">&#10003; Submit</button>
+        <button type="button" class="tool-btn" onclick="showHint()" title="Get a hint">&#128161; Hint</button>
+        <button type="button" class="tool-btn" onclick="resetCode()" title="Go back to the starter code">&#8634; Reset</button>
+        <button type="button" class="run-btn" onclick="runPreview()">&#9654; Preview</button>
+        <button type="button" class="sub-btn" id="submit-btn" onclick="submitCode()">&#10003; Submit</button>
+        <button type="button" class="next-btn" id="next-btn" onclick="nextLesson()">Next &#8594;</button>
       </div>
     </div>
     <textarea id="code-editor" spellcheck="false"></textarea>
     <div class="ins-bar" id="ins-bar"></div>
     <div class="ed-foot">
-      <span>Tab to indent &middot; Ctrl+Enter to preview</span>
+      <span>Tab to indent &middot; Esc then Tab to leave &middot; Ctrl+Enter to preview &middot; Progress saves automatically</span>
       <span id="char-count">0 chars</span>
     </div>
   </div>
@@ -206,7 +254,7 @@ main{display:grid;grid-template-columns:290px 1fr 1fr;flex:1;overflow:hidden}
       <div style="font-size:0.7rem;color:var(--muted);font-weight:700">Press Preview to render</div>
     </div>
     <div class="res-banner" id="res-banner"></div>
-    <iframe id="preview-frame" sandbox="allow-scripts"></iframe>
+    <iframe id="preview-frame" title="Live preview of your code" sandbox="allow-scripts allow-modals"></iframe>
     <div class="pv-empty" id="pv-empty">
       <div class="pv-empty-icon">&#128421;</div>
       <div>Press <strong>Preview</strong> to see your code here</div>
@@ -216,9 +264,9 @@ main{display:grid;grid-template-columns:290px 1fr 1fr;flex:1;overflow:hidden}
 </main>
 
 <div id="shop-screen">
-  <div class="shop-panel">
-    <div class="shop-title">Shop</div>
-    <div class="shop-sub">Earn coins by completing HTML lessons, then spend them to unlock new worlds! You have <strong><span id="shop-coins">0</span> coins</strong>.</div>
+  <div class="shop-panel" role="dialog" aria-modal="true" aria-labelledby="shop-title">
+    <div class="shop-title" id="shop-title">Shop</div>
+    <div class="shop-sub">Earn coins by completing lessons, then spend them to unlock new worlds! You have <strong><span id="shop-coins">0</span> coins</strong>.</div>
     <div class="shop-items">
       <div class="shop-item css-si" id="shop-css-item">
         <div class="si-icon">&#127912;</div>
@@ -237,11 +285,23 @@ main{display:grid;grid-template-columns:290px 1fr 1fr;flex:1;overflow:hidden}
         <div id="shop-js-action"></div>
       </div>
     </div>
-    <button class="shop-close" onclick="closeShop()">Close Shop</button>
+    <button type="button" class="shop-close" onclick="closeShop()">Close Shop</button>
   </div>
 </div>
 
-<div class="toast" id="toast"></div>
+<div id="finish-screen" class="overlay">
+  <div class="shop-panel finish-panel" role="dialog" aria-modal="true" aria-labelledby="finish-title">
+    <div class="finish-icon">&#127942;</div>
+    <div class="shop-title" id="finish-title">You finished WebCraft!</div>
+    <div class="shop-sub">You completed every HTML, CSS and JavaScript lesson. You now know how to build, style and add life to a web page. Keep practising by making a small page of your own!</div>
+    <div class="finish-actions">
+      <button type="button" class="shop-close" onclick="closeFinish()">Keep exploring</button>
+      <button type="button" class="shop-close danger" onclick="restartAll()">Start over</button>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
 
 <script>
 var WORLDS = {
@@ -256,9 +316,9 @@ var WORLDS = {
         starter: '',
         chips: ['<h1>', '</h1>', '<h2>', '</h2>'],
         checks: [
-          { label: 'You have an opening h1 tag', test: function(c){ return /<h1>/i.test(c); } },
+          { label: 'You have an opening h1 tag', test: function(c){ return /<h1[\s>]/i.test(c); } },
           { label: 'You have a closing /h1 tag', test: function(c){ return /<\/h1>/i.test(c); } },
-          { label: 'Your h1 has some text inside it', test: function(c){ return /<h1>(.+)<\/h1>/i.test(c); } }
+          { label: 'Your h1 has some text inside it', test: function(c){ return /<h1[^>]*>\s*[^<\s][\s\S]*?<\/h1>/i.test(c); } }
         ],
         coins: 30
       },
@@ -270,9 +330,9 @@ var WORLDS = {
         starter: '<h1>My Page</h1>\n',
         chips: ['<p>', '</p>', '<h1>', '</h1>'],
         checks: [
-          { label: 'You have an h1 heading', test: function(c){ return /<h1>(.+)<\/h1>/i.test(c); } },
-          { label: 'You have a p paragraph tag', test: function(c){ return /<p>/i.test(c); } },
-          { label: 'Your paragraph has text inside it', test: function(c){ return /<p>(.+)<\/p>/i.test(c); } }
+          { label: 'You have an h1 heading', test: function(c){ return /<h1[^>]*>\s*[^<\s][\s\S]*?<\/h1>/i.test(c); } },
+          { label: 'You have a p paragraph tag', test: function(c){ return /<p[\s>]/i.test(c); } },
+          { label: 'Your paragraph has text inside it', test: function(c){ return /<p[^>]*>\s*[^<\s][\s\S]*?<\/p>/i.test(c); } }
         ],
         coins: 30
       },
@@ -284,9 +344,9 @@ var WORLDS = {
         starter: '<h2>My Favourite Things</h2>\n',
         chips: ['<ul>', '</ul>', '<li>', '</li>'],
         checks: [
-          { label: 'You have a ul list tag', test: function(c){ return /<ul>/i.test(c); } },
+          { label: 'You have a ul list tag', test: function(c){ return /<ul[\s>]/i.test(c); } },
           { label: 'You closed the list with /ul', test: function(c){ return /<\/ul>/i.test(c); } },
-          { label: 'You have at least 2 list items using li', test: function(c){ return (c.match(/<li>/gi)||[]).length >= 2; } }
+          { label: 'You have at least 2 list items using li', test: function(c){ return (c.match(/<li[\s>]/gi)||[]).length >= 2; } }
         ],
         coins: 40
       },
@@ -298,9 +358,9 @@ var WORLDS = {
         starter: '<h1>Useful Links</h1>\n<p>Here are some links I like:</p>\n',
         chips: ['<a href="">', '</a>'],
         checks: [
-          { label: 'You have an a tag', test: function(c){ return /<a\s/i.test(c); } },
+          { label: 'You have an a tag', test: function(c){ return /<a\s[^>]*>/i.test(c); } },
           { label: 'Your link has an href attribute', test: function(c){ return /href=["'][^"']+["']/i.test(c); } },
-          { label: 'Your link has clickable text inside it', test: function(c){ return /<a[^>]+>(.+)<\/a>/i.test(c); } }
+          { label: 'Your link has clickable text inside it', test: function(c){ return /<a[^>]+>\s*[^<\s][\s\S]*?<\/a>/i.test(c); } }
         ],
         coins: 40
       },
@@ -321,7 +381,7 @@ var WORLDS = {
     ]
   },
   css: {
-    name: 'CSS', icon: 'CSS', wtag: 'ct', filename: 'style.css', cost: 100,
+    name: 'CSS', icon: 'CSS', wtag: 'ct', filename: 'index.html', cost: 100,
     levels: [
       {
         title: 'Your First Style',
@@ -331,7 +391,7 @@ var WORLDS = {
         starter: '<style>\n  /* Write your CSS rules here */\n\n</style>\n\n<h1>My Styled Page</h1>\n<p>I am learning CSS!</p>',
         chips: ['<style>', '</style>', 'color:', 'background-color:', 'h1 { }', 'body { }', 'p { }'],
         checks: [
-          { label: 'You have a style block', test: function(c){ return /<style>/i.test(c); } },
+          { label: 'You have a style block', test: function(c){ return /<style[\s>]/i.test(c); } },
           { label: 'You set background-color on the body', test: function(c){ return /body\s*\{[^}]*background-color\s*:/i.test(c); } },
           { label: 'You set color on h1', test: function(c){ return /h1\s*\{[^}]*color\s*:/i.test(c); } }
         ],
@@ -382,7 +442,7 @@ var WORLDS = {
     ]
   },
   js: {
-    name: 'JavaScript', icon: 'JS', wtag: 'jt', filename: 'script.js', cost: 150,
+    name: 'JavaScript', icon: 'JS', wtag: 'jt', filename: 'index.html', cost: 150,
     levels: [
       {
         title: 'Showing Messages',
@@ -392,7 +452,7 @@ var WORLDS = {
         starter: '<h1>My Interactive Page</h1>\n<button onclick="sayHello()">Say Hello!</button>\n\n<script>\n  function sayHello() {\n    // Write your alert here\n  }\n<' + '/script>',
         chips: ['alert("")', '<script>', '<' + '/script>'],
         checks: [
-          { label: 'You have a script tag', test: function(c){ return /<script>/i.test(c); } },
+          { label: 'You have a script tag', test: function(c){ return /<script[\s>]/i.test(c); } },
           { label: 'You have an alert()', test: function(c){ return /alert\s*\(/i.test(c); } },
           { label: 'You have a function', test: function(c){ return /function\s+\w+/i.test(c); } }
         ],
@@ -449,6 +509,49 @@ var currentWorld = 'html';
 var currentIdx = 0;
 var completed = { html: [], css: [], js: [] };
 var owned = { html: true, css: false, js: false };
+var drafts = {}; // unsent code per lesson, e.g. drafts['css-2']
+var advanceTimer = null;
+
+// ----- Saving progress in this browser -----
+var SAVE_KEY = 'webcraft-progress-v1';
+
+function saveProgress() {
+  try {
+    localStorage.setItem(SAVE_KEY, JSON.stringify({
+      coins: coins, completed: completed, owned: owned,
+      currentWorld: currentWorld, currentIdx: currentIdx, drafts: drafts
+    }));
+  } catch (e) { /* private mode or storage full: the game still works, it just won't remember */ }
+}
+
+function loadProgress() {
+  try {
+    var data = JSON.parse(localStorage.getItem(SAVE_KEY));
+    if (!data) return;
+    if (typeof data.coins === 'number') coins = data.coins;
+    ['html','css','js'].forEach(function(w){
+      if (data.completed && Array.isArray(data.completed[w])) completed[w] = data.completed[w];
+      if (data.owned && typeof data.owned[w] === 'boolean') owned[w] = data.owned[w];
+    });
+    owned.html = true;
+    if (data.drafts && typeof data.drafts === 'object') drafts = data.drafts;
+    if (WORLDS[data.currentWorld] && owned[data.currentWorld]) {
+      currentWorld = data.currentWorld;
+      var n = WORLDS[currentWorld].levels.length;
+      if (data.currentIdx >= 0 && data.currentIdx < n) currentIdx = data.currentIdx;
+    }
+  } catch (e) { /* bad or missing save: start fresh */ }
+}
+
+function draftKey() { return currentWorld + '-' + currentIdx; }
+
+// Remove comments so code that is only commented out does not pass a check
+function stripComments(code) {
+  return code
+    .replace(/<!--[\s\S]*?-->/g, '')
+    .replace(/\/\*[\s\S]*?\*\//g, '')
+    .replace(/(^|[^:"'])\/\/.*$/gm, '$1');
+}
 
 function $(id){ return document.getElementById(id); }
 
@@ -468,7 +571,10 @@ function updateCoins() {
 function switchWorld(w) {
   if (!owned[w]) { openShop(); return; }
   currentWorld = w;
+  // Open the first lesson not done yet
   currentIdx = 0;
+  var lv = WORLDS[w].levels;
+  for (var i = 0; i < lv.length; i++) { if (completed[w].indexOf(i) < 0) { currentIdx = i; break; } }
   renderTabs();
   renderLevels();
   loadLevel();
@@ -482,6 +588,8 @@ function renderTabs() {
   ['html','css','js'].forEach(function(w){
     var t = $('tab-' + w);
     t.classList.remove('active','locked');
+    t.setAttribute('aria-pressed', String(w === currentWorld));
+    t.setAttribute('aria-label', WORLDS[w].name + (owned[w] ? ' world' : ' world, locked. Opens the shop'));
     if (!owned[w]) {
       t.classList.add('locked');
     } else if (w === currentWorld) {
@@ -498,13 +606,15 @@ function renderLevels() {
     var done = completed[currentWorld].indexOf(i) >= 0;
     var isActive = i === currentIdx;
     var cls = 'lvlbtn' + (done ? ' done' : '') + (isActive ? ' ' + world.wtag.charAt(0) + 'a' : '');
-    var el = document.createElement('div');
+    var el = document.createElement('button');
+    el.type = 'button';
     el.className = cls;
+    if (isActive) el.setAttribute('aria-current', 'step');
     el.innerHTML =
       '<div class="lbtn-icon">' + (done ? '&#10003;' : (isActive ? '&#9654;' : String(i+1) + '.')) + '</div>' +
       '<div class="lbtn-info"><div class="lbtn-name">' + lvl.title + '</div><div class="lbtn-sub">' + lvl.short + ' &middot; ' + lvl.coins + ' coins</div></div>' +
       (done ? '<div class="done-badge">Done</div>' : '');
-    (function(idx){ el.onclick = function(){ currentIdx = idx; renderLevels(); loadLevel(); }; })(i);
+    (function(idx){ el.onclick = function(){ clearTimeout(advanceTimer); currentIdx = idx; renderLevels(); loadLevel(); }; })(i);
     list.appendChild(el);
   });
 }
@@ -537,12 +647,17 @@ function loadLevel() {
     var el = document.createElement('span');
     el.className = 'ichip';
     el.textContent = chip;
+    el.tabIndex = 0;
+    el.setAttribute('role', 'button');
+    el.setAttribute('aria-label', 'Insert ' + chip);
     el.onclick = function(){ insertChip(chip); };
+    el.onkeydown = function(e){ if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); insertChip(chip); } };
     ib.appendChild(el);
   });
 
   var ed = $('code-editor');
-  ed.value = lvl.starter || '';
+  var saved = drafts[draftKey()];
+  ed.value = typeof saved === 'string' ? saved : (lvl.starter || '');
   $('ed-filename').textContent = world.filename;
   updateCharCount();
 
@@ -554,6 +669,65 @@ function loadLevel() {
   var already = completed[currentWorld].indexOf(currentIdx) >= 0;
   $('submit-btn').disabled = already;
   $('submit-btn').textContent = already ? 'Already Done!' : 'Submit';
+  updateNextBtn();
+  saveProgress();
+}
+
+function updateNextBtn() {
+  var done = completed[currentWorld].indexOf(currentIdx) >= 0;
+  var hasNext = currentIdx < WORLDS[currentWorld].levels.length - 1;
+  $('next-btn').classList.toggle('show', done && hasNext);
+}
+
+function nextLesson() {
+  clearTimeout(advanceTimer);
+  if (currentIdx < WORLDS[currentWorld].levels.length - 1) {
+    currentIdx++;
+    renderLevels();
+    loadLevel();
+  }
+}
+
+function resetCode() {
+  var lvl = WORLDS[currentWorld].levels[currentIdx];
+  var ed = $('code-editor');
+  if (ed.value !== (lvl.starter || '') && !confirm('Reset this lesson to the starter code? Your changes will be lost.')) return;
+  ed.value = lvl.starter || '';
+  delete drafts[draftKey()];
+  saveProgress();
+  updateCharCount();
+  runChecks(ed.value, false);
+  ed.focus();
+}
+
+function showHint() {
+  var lvl = WORLDS[currentWorld].levels[currentIdx];
+  var code = $('code-editor').value;
+  var clean = stripComments(code);
+  for (var i = 0; i < lvl.checks.length; i++) {
+    if (!lvl.checks[i].test(clean)) {
+      var label = lvl.checks[i].label;
+      toast('Hint: make sure ' + label.charAt(0).toLowerCase() + label.slice(1) + '. Look at the example!', 'info');
+      return;
+    }
+  }
+  toast(code.trim() ? 'Everything looks right. Press Submit!' : 'Start by copying the example, then change it.', 'info');
+}
+
+function allDone() {
+  return ['html','css','js'].every(function(w){ return completed[w].length >= WORLDS[w].levels.length; });
+}
+
+function closeFinish() { $('finish-screen').classList.remove('show'); }
+
+function restartAll() {
+  if (!confirm('Start over from the beginning? Your coins and progress will be cleared.')) return;
+  try { localStorage.removeItem(SAVE_KEY); } catch (e) {}
+  coins = 0; currentWorld = 'html'; currentIdx = 0; drafts = {};
+  completed = { html: [], css: [], js: [] };
+  owned = { html: true, css: false, js: false };
+  closeFinish();
+  updateCoins(); renderTabs(); renderLevels(); loadLevel();
 }
 
 function runPreview() {
@@ -586,14 +760,22 @@ function submitCode() {
     coins += lvl.coins;
     updateCoins();
     completed[currentWorld].push(currentIdx);
+    delete drafts[draftKey()];
+    saveProgress();
     $('submit-btn').disabled = true;
     $('submit-btn').textContent = 'Done!';
     renderLevels();
     renderTabs();
     toast('+' + lvl.coins + ' coins earned!', 'coins');
+    updateNextBtn();
     var isLast = currentIdx === WORLDS[currentWorld].levels.length - 1;
-    if (!isLast) {
-      setTimeout(function(){ currentIdx++; renderLevels(); loadLevel(); }, 2200);
+    if (allDone()) {
+      setTimeout(function(){ $('finish-screen').classList.add('show'); }, 1200);
+    } else if (!isLast) {
+      var from = currentWorld + '-' + currentIdx;
+      advanceTimer = setTimeout(function(){
+        if (currentWorld + '-' + currentIdx === from) nextLesson();
+      }, 2200);
     } else {
       rb.textContent += ' You finished this world! Visit the Shop for more.';
     }
@@ -612,7 +794,7 @@ function runChecks(code, markFail) {
   var lvl = WORLDS[currentWorld].levels[currentIdx];
   var passed = 0;
   lvl.checks.forEach(function(ch, i){
-    var ok = ch.test(code);
+    var ok = ch.test(stripComments(code));
     var el = $('chk' + i);
     if (ok) {
       el.className = 'chkitem pass';
@@ -639,21 +821,37 @@ function updateCharCount() {
   $('char-count').textContent = $('code-editor').value.length + ' chars';
 }
 
+// Keep the student's unsent code so a refresh doesn't lose it
+var draftTimer = null;
+function rememberDraft() {
+  clearTimeout(draftTimer);
+  draftTimer = setTimeout(function(){
+    drafts[draftKey()] = $('code-editor').value;
+    saveProgress();
+  }, 400);
+}
+
 $('code-editor').addEventListener('keydown', function(e){
-  if (e.key === 'Tab') {
+  if (e.key === 'Tab' && !e.shiftKey && !e.target._tabOut) {
     e.preventDefault();
     var s = e.target.selectionStart;
     e.target.value = e.target.value.slice(0,s) + '  ' + e.target.value.slice(e.target.selectionEnd);
     e.target.selectionStart = e.target.selectionEnd = s + 2;
   }
   if (e.key === 'Enter' && (e.ctrlKey || e.metaKey)) runPreview();
+  // Escape, then Tab, moves focus out of the editor
+  e.target._tabOut = e.key === 'Escape';
 });
-$('code-editor').addEventListener('input', updateCharCount);
+$('code-editor').addEventListener('input', function(){ updateCharCount(); rememberDraft(); });
+document.addEventListener('keydown', function(e){
+  if (e.key === 'Escape') { closeShop(); closeFinish(); }
+});
 
 function openShop() {
   updateCoins();
   renderShop();
   $('shop-screen').classList.add('show');
+  $('shop-screen').querySelector('.shop-close').focus();
 }
 function closeShop() {
   $('shop-screen').classList.remove('show');
@@ -681,12 +879,15 @@ function buyWorld(w) {
   if (coins < world.cost) { toast('Not enough coins!', 'error'); return; }
   coins -= world.cost;
   owned[w] = true;
+  saveProgress();
   updateCoins();
   renderShop();
   renderTabs();
   toast(world.name + ' World unlocked!', 'coins');
 }
 
+loadProgress();
+updateCoins();
 renderTabs();
 renderLevels();
 loadLevel();
