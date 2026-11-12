@@ -38,7 +38,7 @@ WebCraft is a beginner-friendly coding playground. Each lesson explains one idea
 
 ## Run it locally
 
-WebCraft is a single `index.html` file with no build step or dependencies. Download or clone the repo and open `index.html` in your browser:
+WebCraft has no build step or dependencies. Download or clone the repo and open `index.html` in your browser:
 
 ```bash
 git clone https://github.com/irbala/WebCraft.git
@@ -46,9 +46,18 @@ cd WebCraft
 open index.html   # or double-click the file
 ```
 
+## Files
+
+| File | What's in it |
+|---|---|
+| `index.html` | The page structure |
+| `styles.css` | All the styles |
+| `lessons.js` | The lessons for each world |
+| `app.js` | How the app works: progress, editor, preview, checks and shop |
+
 ## Adding a lesson
 
-Lessons live in the `WORLDS` object near the top of the script in `index.html`. Each lesson looks like this:
+Lessons live in the `WORLDS` object in `lessons.js`. Each lesson looks like this:
 
 ```js
 {
