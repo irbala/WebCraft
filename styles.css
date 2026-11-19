@@ -4,13 +4,13 @@
   --bg: #f0f4ff;
   --panel: #fff;
   --border: #e2e8f8;
-  --hc: #e8560a;
+  --hc: #c2410c;
   --hl: #fff4ef;
   --hb: #ffd0bc;
   --cc: #1a6cf0;
   --cl: #eff5ff;
   --cb: #bdd3ff;
-  --jc: #c9920a;
+  --jc: #946200;
   --jl: #fffbef;
   --jb: #ffedb0;
   --coin: #f59e0b;
@@ -19,7 +19,7 @@
   --red: #dc2626;
   --rl: #fee2e2;
   --text: #1e2240;
-  --muted: #7a82a8;
+  --muted: #5c6488;
 }
 
 * {
@@ -158,7 +158,7 @@ header {
 .lbadge {
   font-size: 0.75rem;
   background: var(--coin);
-  color: #fff;
+  color: var(--text);
   border-radius: 20px;
   padding: 1px 7px;
   font-weight: 800;
@@ -356,7 +356,7 @@ main {
   font-weight: 800;
   text-transform: uppercase;
   letter-spacing: 1px;
-  color: #7a82a8;
+  color: #a9b1d6;
   margin-bottom: 6px;
 }
 
@@ -494,7 +494,7 @@ main {
   display: flex;
   align-items: center;
   gap: 5px;
-  background: #28c840;
+  background: #15803d;
   color: #fff;
   border: none;
   padding: 5px 13px;
@@ -507,7 +507,7 @@ main {
 }
 
 .run-btn:hover {
-  background: #22a836;
+  background: #166534;
 }
 
 .sub-btn {
@@ -515,7 +515,7 @@ main {
   align-items: center;
   gap: 5px;
   background: var(--coin);
-  color: #fff;
+  color: var(--text);
   border: none;
   padding: 5px 13px;
   border-radius: 7px;
@@ -626,7 +626,7 @@ main {
   background: #171930;
   border-top: 1px solid #2e3260;
   font-size: 0.75rem;
-  color: #5a6290;
+  color: #8b93bd;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -979,7 +979,7 @@ main {
 
 .toast.coins {
   background: var(--coin);
-  color: #fff;
+  color: var(--text);
 }
 
 .toast.info {
